@@ -1,0 +1,7 @@
+name = input("Whats your name: ")
+do = input("What do u like to do: ")
+first = input("First hobby: ")
+second= input("Second hobby: ")
+third= input("Third hobby: ")
+team = input("Whats you team: ")
+print(f'Hey there my name is {name} and I like to {do}. My Hobbies are {first} ,{second} and {third}. I am a part of {team}')
