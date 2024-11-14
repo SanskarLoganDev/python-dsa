@@ -132,8 +132,15 @@ class LinkedList():
                 itr.next = itr.next.next
             else: # here else is reauired to handle cases where duplicates occur more than twice, directly increasing itr to itr.next will skip comparisons
                 itr = itr.next
-            
-    
+                
+    def remove_duplicates_alt(self):
+        itr = self.head
+        while itr:
+            while itr.next and itr.data == itr.next.data:
+                itr.next = itr.next.next
+            itr=itr.next       
+        
+        
     
     # here since we are just taking data of node, 2 while loop are required
     
@@ -160,19 +167,19 @@ class LinkedList():
         
                 
     
-root=LinkedList()
-root.insert_at_end(12)
-root.insert_at_end(18)
-root.insert_at_end(98)
-root.insert_at_end(188)
-root.insert_at_end(19)
-root.insert_at_end(134)
-print(root.printf())
-root.replace_max_efficient(10)
-print(root.printf())
-print(root.sum_odd_indexes())
-root.reverse()
-print(root.printf())
+# root=LinkedList()
+# root.insert_at_end(12)
+# root.insert_at_end(18)
+# root.insert_at_end(98)
+# root.insert_at_end(188)
+# root.insert_at_end(19)
+# root.insert_at_end(134)
+# print(root.printf())
+# root.replace_max_efficient(10)
+# print(root.printf())
+# print(root.sum_odd_indexes())
+# root.reverse()
+# print(root.printf())
 
 # Specifically for Problem 4
 
@@ -202,13 +209,13 @@ print(root.printf())
 
 # Specifically for Problem 5
 
-duplicate = LinkedList()
-duplicate.insert_at_end(1)
-duplicate.insert_at_end(1)
-duplicate.insert_at_end(1)
+# duplicate = LinkedList()
+# duplicate.insert_at_end(1)
+# duplicate.insert_at_end(1)
+# duplicate.insert_at_end(1)
 # duplicate.insert_at_end(3)
 # duplicate.insert_at_end(3)
-print(duplicate.printf())
-duplicate.remove_duplicates()
-print(duplicate.printf())
+# print(duplicate.printf())
+# duplicate.remove_duplicates_alt()
+# print(duplicate.printf())
         
