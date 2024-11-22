@@ -28,8 +28,9 @@ print(f"Number of times h has occured: {c['h']}")
 
 c = Counter([1,1,1,3,4,5,6,7,7,7])
 # Takes the arguments for how many most commons do you want to find
+print(c)  # return Counter({1: 3, 7: 3, 3: 1, 4: 1, 5: 1, 6: 1})
 print(c.most_common(1))  # returns [(1, 3)]
-print(c.most_common(2)) # returns [(1, 3), (7, 2)]
+print(c.most_common(2)) # returns [(1, 3), (7, 3)]
 
 # .subtract(collection): This will subtract the count of items from the collection passed from the Counter object.
 
