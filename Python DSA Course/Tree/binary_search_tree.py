@@ -44,7 +44,29 @@ class BinarySearchTreeNode:
             if self.right:
                 return self.right.search(val)
             else:
-                return False        
+                return False   
+            
+    def delete(self, val):
+        if val<self.data:
+            if self.left:
+                self.left = self.left.delete(val) # this is just traversing down not deleting
+        elif val>self.data:
+            if self.right:
+                self.right = self.right.delete(val)
+        else:
+            if self.left is None and self.right is None:
+                return None
+            if self.left is None:
+                return self.right
+            if self.right is None:
+                return self.left
+            
+            # Now deleting a node woth 2 child nodes
+            min_val = self.right.find_min()
+            self.data = min_val
+            self.right = self.right.delete(min_val)
+            
+        return self
         
     def in_order_traversal(self): # basically a sorted list
         elements = []
@@ -140,3 +162,5 @@ print(root.search(23)) # will also work for string as string in python identifie
 print(root.find_min())
 print(root.find_max())
 print(root.calculate_sum())
+root.delete(20)
+print(root.in_order_traversal())
