@@ -1,3 +1,5 @@
+# Structure of a general tree or n array tree
+
 class TreeNode:
     def __init__(self, data):
         self.data = data
