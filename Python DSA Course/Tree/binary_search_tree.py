@@ -45,43 +45,56 @@ class BinarySearchTreeNode:
                 return self.right.search(val)
             else:
                 return False   
-            
+       
+    def find_min(self):
+        if self.left is None:
+            return self.data
+        return self.left.find_min()
+    
+    def find_max(self):
+        if self.right is None:
+            return self.data
+        return self.right.find_max()
+      
     def delete(self, val):
         if val<self.data:
             if self.left:
-                self.left = self.left.delete(val) # this is just traversing down not deleting
+                self.left=self.left.delete(val)
+                # Here, assignment is necessary because the recursive delete call may return a new subtree (or None) that needs to replace the current subtree.
         elif val>self.data:
             if self.right:
-                self.right = self.right.delete(val)
-        else:
-            if self.left is None and self.right is None:
+                self.right=self.right.delete(val)
+        else: # In bst recursion while deleting we return the remaining tree after deleting
+            if self.left is None and self.right is None: 
                 return None
             if self.left is None:
-                return self.right
+                return self.right # deleting the current node and assigning the remaining right tree
             if self.right is None:
                 return self.left
+            # 2 ways to do so
             
-            # Now deleting a node woth 2 child nodes
-            min_val = self.right.find_min()
+            min_val = self.right.find_min() 
             self.data = min_val
-            self.right = self.right.delete(min_val)
+            self.right = self.right.delete(min_val) # here now delete will be applied to new tree (remaining tree)
+            # max_val = self.left.find_max()
+            # self.data = max_val
+            # self.left = self.left.delete(max_val)
             
         return self
+        
         
     def in_order_traversal(self): # basically a sorted list
         elements = []
         
         # visit left subtree
         if self.left:
-            left_elements = self.left.in_order_traversal()
+            elements+= self.left.in_order_traversal()
             # print("Left elements are: ", left_elements)
-            elements+= left_elements
             
         elements.append(self.data) # the node we are visiting/ top node
         
         if self.right:
-            right_elements = self.right.in_order_traversal()
-            elements+= right_elements
+            elements+= self.right.in_order_traversal()
         
         return elements
     
@@ -91,14 +104,11 @@ class BinarySearchTreeNode:
         
         # visit left subtree
         if self.left:
-            left_elements = self.left.pre_order_traversal()
+            elements+= self.left.pre_order_traversal()
             # print("Left elements are: ", left_elements)
-            elements+= left_elements
-        
         
         if self.right:
-            right_elements = self.right.pre_order_traversal()
-            elements+= right_elements
+            elements+= self.right.pre_order_traversal()
         
         return elements
     
@@ -118,34 +128,12 @@ class BinarySearchTreeNode:
             
         elements.append(self.data) # the node we are visiting/ top node
         
-        return elements
-    
-    def find_min(self):
-        
-        if self.left is None: # just go to the left end
-            return self.data
-        return self.left.find_min()
-    
-    def find_max(self):
-        if self.right is None:
-            return self.data
-        return self.right.find_max()
-    
-    def calculate_sum(self):
-        if self.left:
-            left_sum = self.left.calculate_sum()
-        else:
-            left_sum = 0
-        if self.right:
-            right_sum = self.right.calculate_sum()
-        else:
-            right_sum = 0
-        return self.data + left_sum + right_sum
-        
-            
-        
+        return elements       
                 
 def build_tree(elements):
+    if len(elements) ==0:
+        print("No elements here Mofo! ",elements)
+        return
     print("Build tree with: ", elements)
     root = BinarySearchTreeNode(elements[0])
     
@@ -159,8 +147,11 @@ print(root.in_order_traversal())
 print(root.pre_order_traversal())
 print(root.post_order_traversal())
 print(root.search(23)) # will also work for string as string in python identifies less than and greater than
-print(root.find_min())
-print(root.find_max())
-print(root.calculate_sum())
 root.delete(20)
 print(root.in_order_traversal())
+
+numbers = [15,12,27,88,23,7,14,20]
+tree = build_tree(numbers)
+print(tree.in_order_traversal())
+tree.delete(20)
+print(tree.in_order_traversal())
