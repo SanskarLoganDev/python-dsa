@@ -5,6 +5,8 @@
 # left = 2*index+1
 # right = 2*index+2
 # parent = (index+1)//2
+import heapq
+
 class MinHeap:
     def __init__(self):
         self.heap = []
@@ -104,7 +106,7 @@ if __name__ == '__main__':
     min_heap.heapify([[10, '10'], [9, '9'], [8, '8'], [7, '7'], [6, '6'], [5, '5'], [4, '4'], [3, '3'], [2, '2'], [1, '1']])
     print(min_heap)
     
-    import heapq
+    
     mylist = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
     heapq.heapify(mylist)
     print(mylist)
@@ -123,3 +125,50 @@ if __name__ == '__main__':
     min_heap_2.heapify([[5,'5'], [7,'7'], [2,'2']])
     min_heap.meld(min_heap_2)
     print(min_heap)
+    
+# Detailed Explanation of heapify
+# The heapify function is one of the most important and sometimes confusing parts of heap implementations. Let’s look at the code and then explain it:
+
+# def heapify(self, elements):
+#     self.heap = list(elements)
+    
+#     for i in reversed(range(self._parent(len(self.heap)-1) + 1)):
+#         self._sift_down(i)
+
+
+# Step 1: Copying the Elements
+
+# self.heap = list(elements)
+# This line takes the input list elements and makes a copy of it into self.heap. Now the heap contains all the elements we want to build a heap from.
+
+
+# Step 2: Identify the Last Parent Node
+
+# Before we “sift down” nodes, we need to know where the non-leaf nodes (parents) are located. In an array representation of a heap:
+
+# The leaves start at index floor(n/2) (for 0-indexed arrays).
+
+# You want to call _sift_down on all nodes that have at least one child.
+
+# The code uses:
+
+# for i in reversed(range(self._parent(len(self.heap)-1) + 1)):
+# len(self.heap) - 1 is the index of the last element.
+
+# self._parent(len(self.heap)-1) returns the parent index of the last element.
+
+# Adding 1 and then taking reversed(range(...)) produces a sequence from that parent's index down to 0.
+
+# For example, with 10 elements, if we assume the parent of the last index (9) is computed by (9+1)//2 = 10//2 = 5, then range(self._parent(9)+1) becomes range(6), which yields indices 0,1,2,3,4,5. Reversed, we iterate: 5, 4, 3, 2, 1, 0.
+
+
+# Step 3: Sift Down Each Parent
+
+# For each index i (from the last parent to the root), we call:
+
+# self._sift_down(i)
+# The purpose of _sift_down(i) is to ensure that the subtree rooted at index i is a valid min-heap.
+
+# It does this by comparing the node at index i with its children (found via _left(i) and _right(i)) and swapping it with the smallest child if needed.
+
+# Then it repeats the process for the child’s new position until the subtree satisfies the min-heap property.
