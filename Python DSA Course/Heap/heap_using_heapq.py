@@ -38,3 +38,7 @@ l2 = [15, 25, 35, 45, 55]
 l3 = heapq.merge(l1, l2)
 
 print(list(l3))
+
+# The heappush method inserts the given item onto the heap. 
+# The heappop method pops and returns the smallest element of the given heap. This method removes the smallest element. To access the smallest element without removing it, we can access the 0th element of the list using list[0]. 
+# The heapreplace method pops and returns the smallest element from the heap then pushes the given element into the heap. This method is equivalent to heappop() followed by heappush().
