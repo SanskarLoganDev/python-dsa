@@ -30,6 +30,8 @@ print(copy_data)
 print(heapq._heappop_max(copy_data)) # pops the maximum value and heapifies it
 print(copy_data)
 
+# IMPORTANT: There is no function called heapq._heappush_max(data, value)
+
 # Combining 2 heaps/lists and heapifying
 
 l1 = [10, 20, 30, 40, 50]
