@@ -36,7 +36,7 @@ if __name__=='__main__':
         ("Paris", "Dubai"),
         ("Paris", "New York"),
         ("Dubai", "New York"),
-        ("New York", "Tornoto")
+        ("New York", "Toronto")
     ]
     route_graph = graph(routes)
     paths = route_graph.get_paths("Mumbai", "New York")
