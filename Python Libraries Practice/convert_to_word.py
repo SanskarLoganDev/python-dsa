@@ -1,7 +1,7 @@
 from docx import Document
-from docx.oxml.shared import qn
-from docx.oxml import OxmlElement
 from docx.opc.constants import RELATIONSHIP_TYPE as RT
+from docx.oxml import OxmlElement
+from docx.oxml.shared import qn
 
 document = Document()
 document.add_heading('Hello World', level=1)
