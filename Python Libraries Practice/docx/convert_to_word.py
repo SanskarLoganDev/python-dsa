@@ -94,4 +94,4 @@ github = document.add_paragraph(style='Normal')  # adding a normal paragraph for
 add_hyperlink(github, 'https://www.github.com', 'GitHub')  # adding github hyperlink
 
 
-document.save('Python Libraries Practice/test.docx')
+document.save('Python Libraries Practice/docx/test.docx')
