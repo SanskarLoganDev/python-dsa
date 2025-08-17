@@ -1,18 +1,7 @@
 import cv2
 import mediapipe as mp
-# read image
 
-img = cv2.imread('Python_Libraries_Practice/opencv/projects/face_anonymizer/assets/stock.jpg')
-# img = cv2.resize(img, (0,0), fx=0.25, fy=0.25)
-print(img.shape)  # print the shape of the image to get height and width
-H, W = img.shape[:2]  # unpack the height and width
-
-# detect faces
-mp_face_detection = mp.solutions.face_detection
-
-# below model_selection can be 0 or 1. 0 is the short range model and 1 is the full range model
-# min_detection_confidence is the minimum confidence value for face detection
-with mp_face_detection.FaceDetection(model_selection = 0, min_detection_confidence=0.5) as face_detection:
+def image_processing(img, face_detection):
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # convert the image to RGB as mediapipe works with RGB images
     out = face_detection.process(img_rgb)  # process the image to detect faces
     
@@ -35,6 +24,23 @@ with mp_face_detection.FaceDetection(model_selection = 0, min_detection_confiden
 # blur faces      
       
             img[y1:y1+h, x1:x1+w, :] = cv2.blur(img[y1:y1+h, x1:x1+w, :], (50, 50)) # apply a blur effect to the detected face region, and replace the original face region with the blurred one
+            
+    return img
+
+# read image
+
+img = cv2.imread('Python_Libraries_Practice/opencv/projects/face_anonymizer/assets/stock.jpg')
+# img = cv2.resize(img, (0,0), fx=0.25, fy=0.25)
+print(img.shape)  # print the shape of the image to get height and width
+H, W = img.shape[:2]  # unpack the height and width
+
+# detect faces
+mp_face_detection = mp.solutions.face_detection
+
+# below model_selection can be 0 or 1. 0 is the short range model and 1 is the full range model
+# min_detection_confidence is the minimum confidence value for face detection
+with mp_face_detection.FaceDetection(model_selection = 0, min_detection_confidence=0.5) as face_detection:
+    img = image_processing(img, face_detection)  # process the image to detect faces
             
     cv2.imshow('Face Detection', img)  # display the image with detected faces
     cv2.waitKey(0) # waits for a key press indefinitely (usually takes value in milliseconds)
