@@ -2,6 +2,11 @@ import cv2
 import argparse
 import mediapipe as mp
 
+args = argparse.ArgumentParser()
+args.add_argument("--mode", default='video')
+args.add_argument("--filePath", default='Python_Libraries_Practice/opencv/projects/face_anonymizer/assets/stock_vid.mp4') # comment this line if you want to use webcam
+args = args.parse_args()
+
 def image_processing(img, face_detection):
     
     H, W = img.shape[:2]  # unpack the height and width
@@ -29,11 +34,6 @@ def image_processing(img, face_detection):
             img[y1:y1+h, x1:x1+w, :] = cv2.blur(img[y1:y1+h, x1:x1+w, :], (100, 100)) # apply a blur effect to the detected face region, and replace the original face region with the blurred one
             
     return img
-
-args = argparse.ArgumentParser()
-args.add_argument("--mode", default='video')
-args.add_argument("--filePath", default='Python_Libraries_Practice/opencv/projects/face_anonymizer/assets/stock_vid.mp4')
-args = args.parse_args()
 
 
 # detect faces
@@ -94,6 +94,25 @@ with mp_face_detection.FaceDetection(model_selection = 0, min_detection_confiden
 
         cap.release()
         writer.release()
+        cv2.destroyAllWindows()
+        
+    elif args.mode in ["webcam"]:
+        cap = cv2.VideoCapture(0)
+        if not cap.isOpened():
+            raise RuntimeError("Could not open webcam.")
+
+        while True:
+            ret, frame = cap.read()
+            if not ret:
+                break
+
+            processed = image_processing(frame, face_detection)
+            cv2.imshow("Face Anonymizer (press q to quit)", processed)
+
+            if cv2.waitKey(1) & 0xFF == ord("q"):
+                break
+
+        cap.release()
         cv2.destroyAllWindows()
 
 
