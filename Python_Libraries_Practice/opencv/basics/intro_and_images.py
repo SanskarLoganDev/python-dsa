@@ -9,7 +9,7 @@ import cv2
 1, cv2.IMREAD_UNCHANGED: Loads image as such including alpha channel.
 '''
 
-img = cv2.imread('Python Libraries Practice/opencv/assets/semantic-tags.png', -1)
+img = cv2.imread('Python_Libraries_Practice/opencv/basics/assets/semantic-tags.png', -1)
 
 # img = cv2.resize(img, (400, 400)) # resizing the image to 400x400 pixels
 
@@ -17,7 +17,7 @@ img = cv2.resize(img, (0,0), fx=0.5, fy=0.5) # resizing the image to 50% of its 
 
 img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE) # rotating the image 90 degrees clockwise
 
-cv2.imwrite('Python Libraries Practice/opencv/assets/semantic-tags-resized.jpg', img) # saving the resized image
+cv2.imwrite('Python_Libraries_Practice/opencv/basics/assets/semantic-tags-resized.jpg', img) # saving the resized image
 
 cv2.imshow('image', img) # here image is the name of the window
 cv2.waitKey(0) # waits for a key press indefinitely (usually takes value in milliseconds)

@@ -1,7 +1,7 @@
 import cv2
 import random
 
-img = cv2.imread('Python Libraries Practice/opencv/assets/semantic-tags.png', -1)
+img = cv2.imread('Python_Libraries_Practice/opencv/basics/assets/semantic-tags.png', -1)
 
 # print(img) # it is in the format of a numpy array and in opencv the orfer is BGR (Blue, Green, Red)
 '''

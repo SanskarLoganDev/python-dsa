@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import random
 
-img = cv2.imread('Python Libraries Practice/opencv/assets/kite.jpg')
+img = cv2.imread('Python_Libraries_Practice/opencv/basics/assets/kite.jpg')
 # img = cv2.resize(img, (0, 0), fx = 0.75, fy = 0.75)  # resize the image to 600x600 pixels
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # convert BGR to Grayscale
 

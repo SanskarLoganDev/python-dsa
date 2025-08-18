@@ -1,8 +1,8 @@
 import cv2
 
 # we extract the images in grayscale for algorithms to use them properly
-img = cv2.resize(cv2.imread('Python Libraries Practice/opencv/assets/soccer_practice.jpg', 0), (0,0), fx=0.75, fy=0.75)  # resize the image to half its size
-template = cv2.resize(cv2.imread('Python Libraries Practice/opencv/assets/shoe.PNG', 0), (0,0), fx=0.75, fy=0.75)  # resize the template image to half its size
+img = cv2.resize(cv2.imread('Python_Libraries_Practice/opencv/basics/assets/soccer_practice.jpg', 0), (0,0), fx=0.75, fy=0.75)  # resize the image to half its size
+template = cv2.resize(cv2.imread('Python_Libraries_Practice/opencv/basics/assets/shoe.PNG', 0), (0,0), fx=0.75, fy=0.75)  # resize the template image to half its size
 
 h, w = template.shape # get the height and width of the template image
 
