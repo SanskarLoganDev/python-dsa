@@ -1,5 +1,7 @@
 # Detect Cycle in Undirected Graph using DFS
 
+# time complexity: O(V + E) where V is number of vertices and E is number of edges
+# space complexity: O(V) for the visited array and recursion stack
 class Solution:
     def isCycle(self, V, edges):
         adj = [[] for _ in range(V)] # converting edge list to adjacency list
