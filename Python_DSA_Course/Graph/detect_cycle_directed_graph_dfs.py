@@ -19,7 +19,7 @@ class Solution:
             for v in adj[u]:
                 if visited[v] == False and isCycleDFS(adj, v, visited, inRecursion): # to check if there would be a cycle in subtree
                     return True
-                elif inRecursion[v]: # if neighbor is already in recursion stack, cycle found
+                elif inRecursion[v]: # if neighbor is already in recursion stack, cycle found. Only reaches this part of code if visited[v] is True
                     return True
 
             inRecursion[u] = False # remove node from recursion stack before backtracking
