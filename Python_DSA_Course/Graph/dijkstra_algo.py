@@ -15,7 +15,7 @@ class Solution:
         
         while min_heap: # V vertices (O(V))
             dist, u = heapq.heappop(min_heap) # get vertex with smallest distance. pop is O(log V)
-            if dist > result[u]: # if this distance is not up to date, skip it (This if statement is not strictly necessary but optimizes performance)
+            if dist > result[u]: # if the distance is greater than the currently known shortest distance, skip it (This if statement is not strictly necessary but optimizes performance)
                 continue
             for v, weight in adj[u]: # iterate through all adjacent vertices of u. 
                 # operating on all edges therefore O(E) totally across all iterations and not O(V*E)
