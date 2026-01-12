@@ -21,6 +21,9 @@
 
 # in the solution parent is not needed as we only need the sum of weights of edges in MST. 
 # If needed it could be added in a separate list to track the edges included in MST.
+
+# time complexity: O(E log V) or O(E log E)
+# space complexity: O(V + E)
 import heapq
 class Solution:
     def spanningTree(self, V, edges):
@@ -28,10 +31,10 @@ class Solution:
         inMST = [False]*V
         sum = 0 # to store sum of weights of edges in MST
         adj = [[]for _ in range(V)]
-        for u, v, w in edges:
+        for u, v, w in edges: # O(V+E) to create adjacency list
             adj[u].append([v, w]) # adjacency list
             adj[v].append([u, w])
-        while heap:
+        while heap: # O(E log V)
             wt, u = heapq.heappop(heap) # get the edge with smallest weight
             if inMST[u]:
                 continue
