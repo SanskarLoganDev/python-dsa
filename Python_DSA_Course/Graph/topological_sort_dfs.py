@@ -1,7 +1,7 @@
 # Topological sort using DFS
 
 # time complexity: O(V + E) where V is the number of vertices and E is the number of edges
-# space complexity: O(V) for the visited array, recursion stack, and the result stack
+# space complexity: O(V) for the visited array, recursion stack, and the output stack
 
 class Solution:
     def topoSort(self, V, edges):
@@ -11,22 +11,19 @@ class Solution:
         for u, v in edges:
             adj[u].append(v)
         
-        def topologicalSortDFS(u, adj, visited, stack):
+        def topologicalSortDFS(u):
             visited[u] = True
             for v in adj[u]:
                 if visited[v]!=True:
-                    topologicalSortDFS(v, adj, visited, stack)
+                    topologicalSortDFS(v)
             stack.append(u) # we append after the for loop to ensure all neighbors are processed first
             # In Python, every function returns when it reaches the end of its body, even if you don’t write return
         
         
         for u in range(V):
             if visited[u]!= True:
-                topologicalSortDFS(u, adj, visited, stack)
-        result = [] # to store the final topological order
-        for n in stack:
-            result.append(n)
-        return result[::-1] # reversing the stack to get the correct topological order
+                topologicalSortDFS(u)
+        return stack[::-1] # reversing the stack to get the correct topological order
     
     
 # Step-by-step example of the whole code
@@ -216,18 +213,9 @@ class Solution:
 
 # This is a reverse topological order (because we pushed each node after its descendants).
 
-# Final lines:
-
-# result = []
-# for n in stack:
-#     result.append(n)
-# return result[::-1]
-
-
 # So:
 
-# result = [0, 1, 3, 2, 4, 5]
-# result[::-1] = [5, 4, 2, 3, 1, 0]
+# stack[::-1] = [5, 4, 2, 3, 1, 0]
 
 
 # [5, 4, 2, 3, 1, 0] is a valid topological ordering:
