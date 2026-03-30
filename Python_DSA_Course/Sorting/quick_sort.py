@@ -3,6 +3,10 @@
 # Worst time complexity:   O(n^2)  — when array is already sorted and pivot is always min/max
 # Space complexity:        O(log n) — recursion stack depth
 
+# Space complexity explanation:
+# Every time quick_sort calls itself, Python pushes a stack frame onto the call stack. 
+# That frame holds the local variables for that call — arr, start, end, pi — and it stays alive in memory until that call returns.
+
 # Partitioning scheme: Hoare Partition (pivot = first element)
 # 1. Pick arr[start] as pivot, remember its index
 # 2. Move start pointer RIGHT until we find an element > pivot
